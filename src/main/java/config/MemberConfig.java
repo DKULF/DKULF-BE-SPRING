@@ -38,10 +38,10 @@ public class MemberConfig {
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
 		DataSource ds = new DataSource();
-		//ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		//ds.setUrl("jdbc:mysql://localhost/spring5fs?characterEncoding=utf8");
-		ds.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
-		ds.setUrl("jdbc:log4jdbc:mysql://localhost/DKULF_db?characterEncoding=utf8");
+		ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
+		ds.setUrl("jdbc:mysql://localhost/DKULF_db?characterEncoding=utf8");
+//		ds.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
+//		ds.setUrl("jdbc:log4jdbc:mysql://localhost/DKULF_db?characterEncoding=utf8");
 //		ds.setUrl("jdbc:log4jdbc:mysql://localhost/spring5fs?characterEncoding=utf8");
 
 
