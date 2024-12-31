@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<configuration status="debug">
+ 
+    <Appenders>
+        <!-- 콜솔 -->
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%-5p: [%c] %m%n"/>
+        </Console>
+    </Appenders>
+    
+    <loggers>
+        <root level="info" additivity="true">
+            <AppenderRef ref="console"/>
+        </root>
+        
+        <!-- Application Loggers -->
+	<logger name="org.zerock.controller">
+		<level value="info" />
+	</logger>
+
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+
+	<logger name="jdbc.audit">
+		<level value="warn" />
+	</logger>
+
+	<logger name="jdbc.resultset">
+		<level value="warn" />
+	</logger>
+	<logger name="jdbc.connection">
+		<level value="warn" />
+	</logger>
+        
+    </loggers>
+    
+ 
+</configuration>
