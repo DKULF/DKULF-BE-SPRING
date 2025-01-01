@@ -6,6 +6,7 @@
 [MySQL Download Reference](https://code-angie.tistory.com/158)  
 <br>
 
+### 서버 실행 방법
 1. 
    ```bash
    git clone https://github.com/DKULF/DKULF-BE-SPRING.git
