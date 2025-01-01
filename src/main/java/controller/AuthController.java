@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -22,6 +25,7 @@ import swagger.Response.EmailErrorResponseNoRequest;
 import swagger.Response.EmailVerifySuccessResponse;
 	
 @RestController
+@Api(tags = "Default")
 @RequestMapping("/auth")
 public class AuthController {
 
@@ -55,6 +59,24 @@ public class AuthController {
         @ApiResponse(code = 400, message = "인증 코드 미일치", response = EmailErrorResponseInvalidCode.class),
         @ApiResponse(code = 401, message = "인증 요청 이력 없음", response = EmailErrorResponseNoRequest.class)
     })
+    @ApiImplicitParams({
+        @ApiImplicitParam(
+            name = "email",
+            value = "사용자의 이메일 주소",
+            required = true,
+            dataType = "string",
+            paramType = "query",
+            example = "\"example@dankook.ac.kr\""
+        ),
+        @ApiImplicitParam(
+            name = "code",
+            value = "인증 코드",
+            required = true,
+            dataType = "int",
+            paramType = "query",
+            example = "123456"
+        )
+    })
     @GetMapping("/verify")
     public ResponseEntity<Map<String, Object>> verifyCode(@RequestParam String email, @RequestParam int code) {
     	 Map<String, Object> result = verificationService.verifyCode(email, "단국대학교", code);
@@ -72,6 +94,15 @@ public class AuthController {
     		 result.remove("code");
     		 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
     	 }
+    }
+    
+    @GetMapping("/verifyReset")
+    @ApiOperation(value = "이메일 인증 초기화 api(테스트용)", notes = "한번 인증된 계정에는 메일이 더 전송되지 않아 메일 전송 추가 테스트 시 호출해주세요.")
+    public ResponseEntity<String> clearUser() {
+        // 서비스 메서드 호출
+    	EmailVerificationService emailVerificationService = new EmailVerificationService();
+        emailVerificationService.clearUser();
+        return ResponseEntity.ok("User data cleared successfully.");
     }
 }
 

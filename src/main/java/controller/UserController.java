@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import dto.UserDTO;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@Api(tags = "Default")
 @RequestMapping("/user")
 public class UserController {
 
@@ -29,7 +31,8 @@ public class UserController {
     @ApiOperation(value = "사용자 정보 조회 API", notes = "사용자의 정보를 조회합니다.")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "사용자 정보 조회 성공", response = Response.UserInfoSuccessResponse.class),
-            @ApiResponse(code = 401, message = "JWT 토큰이 없거나 유효하지 않음", response = Response.JwtErrorResponse.class),
+            @ApiResponse(code = 401, message = "JWT 토큰 입력 안됨", response = Response.JwtErrorResponse.class),
+            @ApiResponse(code = 402, message = "JWT 토큰이 유효하지 않음", response = Response.JwtErrorResponseValid.class),
             @ApiResponse(code = 404, message = "사용자 정보가 없음", response = Response.UserNotFoundResponse.class)
     })
     public ResponseEntity<Map<String, Object>> getUserInfo(HttpServletRequest request) {
@@ -37,25 +40,27 @@ public class UserController {
 
         // Extract the Authorization header
         String authHeader = request.getHeader("Authorization");
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+        if (authHeader == null || authHeader.isEmpty()) {
             response.put("success", false);
             response.put("statusCode", 401);
-            response.put("message", "JWT 토큰이 없거나 유효하지 않습니다.");
+            response.put("message", "JWT 토큰이 제공되지 않았습니다.");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
 
-        String token = authHeader.substring(7); // Remove "Bearer " prefix
+        if (authHeader.startsWith("Bearer ")) {
+        	authHeader = authHeader.substring(7); // "Bearer " 접두사 제거
+        }
 
         // Validate the JWT token
-        if (!JwtUtil.validateToken(token)) {
+        if (!JwtUtil.validateToken(authHeader)) {
             response.put("success", false);
             response.put("statusCode", 401);
-            response.put("message", "JWT 토큰이 없거나 유효하지 않습니다.");
+            response.put("message", "JWT 토큰이 유효하지 않습니다.");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
 
         // Extract username from token
-        String username = JwtUtil.extractUsername(token);
+        String username = JwtUtil.extractUsername(authHeader);
 
         // Fetch user information
         UserDTO user = userService.getUserByUsername(username);

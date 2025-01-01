@@ -13,9 +13,6 @@ public class Response {
 
 	    @ApiModelProperty(value = "성공 여부", example = "true")
 	    private boolean success;
-
-	    @ApiModelProperty(value = "응답 메시지", example = "대학과 일치하지 않는 메일 도메인입니다.")
-	    private String message;
 	}
 	
 	@Data
@@ -245,7 +242,20 @@ public class Response {
 	    @ApiModelProperty(value = "HTTP 상태 코드", example = "401")
 	    private int statusCode;
 
-	    @ApiModelProperty(value = "에러 메시지", example = "JWT 토큰이 없거나 유효하지 않습니다.")
+	    @ApiModelProperty(value = "에러 메시지", example = "JWT 토큰이 입력되지 않았습니다.")
+	    private String message;
+	}
+	
+	@Data
+	@ApiModel(description = "JWT 토큰 에러 응답")
+	public class JwtErrorResponseValid {
+	    @ApiModelProperty(value = "성공 여부", example = "false")
+	    private boolean success;
+
+	    @ApiModelProperty(value = "HTTP 상태 코드", example = "401")
+	    private int statusCode;
+
+	    @ApiModelProperty(value = "에러 메시지", example = "JWT 토큰이 유효하지 않습니다.")
 	    private String message;
 	}
 

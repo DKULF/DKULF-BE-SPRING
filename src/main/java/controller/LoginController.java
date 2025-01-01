@@ -7,12 +7,19 @@ import org.springframework.web.bind.annotation.*;
 
 import dto.LoginDTO;
 import dto.UserDTO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.Example;
+import io.swagger.annotations.ExampleProperty;
 import mapper.UserMapper;
 import security.JwtUtil;
 import service.UserService;
+import swagger.RefreshTokenRequest;
 import swagger.Response;
 
 import java.util.Date;
@@ -20,6 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@Api(tags = "Default")
 @RequestMapping("/auth")
 public class LoginController {
 
@@ -70,7 +78,8 @@ public class LoginController {
 	            @ApiResponse(code = 400, message = "Refresh Token 만료", response = Response.RefreshTokenExpiredResponse.class),
 	            @ApiResponse(code = 401, message = "유효하지 않은 Refresh Token", response = Response.InvalidRefreshTokenResponse.class)
 	    })
-	    public ResponseEntity<?> refresh(@RequestBody String refreshToken) {
+	    public ResponseEntity<?> refresh(@RequestBody RefreshTokenRequest request) {
+	    	String refreshToken = request.getRefreshToken();
 	    	 Map<String, Object> response = new HashMap<>();
 	        // 리프레시 토큰 검증
 	        if (JwtUtil.validateToken(refreshToken)) {
