@@ -33,11 +33,11 @@ public class SwaggerConfig {
             "### JWT 토큰 테스트 안내\n" +
             "user/info API를 사용하려면 JWT 토큰이 필요합니다. 아래의 토큰들을 `Authorize` 버튼을 클릭하여 추가한 다음 API를 호출하세요.\n\n" +
             "**관리자 계정 엑세스 토큰**\n" +
-            "`eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNzM1NzI3MTg2LCJleHAiOjE3MzcxMDk1ODZ9.zASxW1BRidezY0r8o1CWQ3dajesWArX8VIOGPGo4M1M`\n\n" +
+            "`eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBkYW5rb29rLmFjLmtyIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpYXQiOjE3MzU4MzI3ODYsImV4cCI6MTczNzMwMTU4Nn0._MFmyKH48LVDmJKuwWq1_hhniobQ6VczBuXwsyxD--4`\n\n" +
             "**Sample 계정 엑세스 토큰**\n" +
-            "`eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1wbGUiLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzM1NzI3MTg3LCJleHAiOjE3MzcxMDk1ODd9.pbSTuM0d3XmeSe5a9bhj2BF9zxoe-sUL1WP0zNWPkD8`\n\n" +
+            "`eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1wbGVAZGFua29vay5hYy5rciIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MzU4MzI3ODgsImV4cCI6MTczNzMwMTU4OH0.fXS-LO6JDvQl4UvaxXzDb01oU8SV3Z8u440jK1KR0rs`\n\n" +
             "**Sample 계정 리프레쉬 토큰**\n" +
-            "`eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1wbGUiLCJpYXQiOjE3MzU3Mjc3MzEsImV4cCI6MTczNzExMDEzMX0.awfyhxRQajfGcKWRDw61jiQEb1Qm9RJBwSvrQ3ZoARk`\n\n" +
+            "`eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1wbGVAZGFua29vay5hYy5rciIsImlhdCI6MTczNTgzMjc4OCwiZXhwIjoxNzM3MzAxNTg4fQ.b7ss4sLwTIUQqK3WyjBhL5mPyRMMxz8PLZLMpNM6LfM`\n\n" +
             "### 참고:\n" +
             "처음 실행 시 등록되어 있는 계정은 다음과 같습니다.\n" +
             "- 관리자 계정: `admin@dankook.ac.kr / admin`\n" +

@@ -1,0 +1,10 @@
+03-Jan-2025 00:16:55.974 정보 [main] org.apache.catalina.core.ApplicationContext.log No Spring WebApplicationInitializer types detected on classpath
+03-Jan-2025 00:16:57.183 정보 [main] org.apache.catalina.core.ApplicationContext.log Initializing Spring FrameworkServlet 'dispatcher'
+03-Jan-2025 00:17:05.349 정보 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+03-Jan-2025 00:17:05.350 정보 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+03-Jan-2025 00:17:05.354 정보 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@6816b13d')
+03-Jan-2025 00:55:24.079 정보 [main] org.apache.catalina.core.ApplicationContext.log No Spring WebApplicationInitializer types detected on classpath
+03-Jan-2025 00:55:25.081 정보 [main] org.apache.catalina.core.ApplicationContext.log Initializing Spring FrameworkServlet 'dispatcher'
+03-Jan-2025 00:55:33.100 정보 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+03-Jan-2025 00:55:33.100 정보 [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+03-Jan-2025 00:55:33.103 정보 [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@399ebdee')
