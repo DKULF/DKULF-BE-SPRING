@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import dto.LoginDTO;
-import dto.UserDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -41,11 +40,11 @@ public class LoginController {
 	            @ApiResponse(code = 400, message = "잘못된 아이디, 비밀번호", response = Response.LoginErrorResponse1.class),
 	            @ApiResponse(code = 401, message = "아이디, 비밀번호 누락", response = Response.LoginErrorResponse2.class)
 	    })
-	    public ResponseEntity<?> login(@RequestBody LoginDTO userDTO) {
+	    public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO) {
 	    	Map<String, Object> response = new HashMap<String, Object>();
 
-	        String username = userDTO.getUsername();
-	        String password = userDTO.getPassword();
+	        String username = loginDTO.getEmail();
+	        String password = loginDTO.getPassword();
 	        // 사용자 인증
 	    	   if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
 	               response.put("statusCode", 400);
@@ -54,12 +53,12 @@ public class LoginController {
 	               return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 	           }
 	    	   
-	        if (userService.validateUser(userDTO.getUsername(), userDTO.getPassword())) {
+	        if (userService.validateUser(loginDTO.getEmail(), loginDTO.getPassword())) {
 	            // 액세스 토큰과 리프레시 토큰 생성
 	        	
-	        	String role = userService.getUserRole(userDTO.getUsername());
-	            String accessToken = JwtUtil.generateAccessToken(userDTO.getUsername(),role);
-	            String refreshToken = JwtUtil.generateRefreshToken(userDTO.getUsername());
+	        	String role = userService.getUserRole(loginDTO.getEmail());
+	            String accessToken = JwtUtil.generateAccessToken(loginDTO.getEmail(),role);
+	            String refreshToken = JwtUtil.generateRefreshToken(loginDTO.getEmail());
 	            response.put("success", true);
 	            response.put("token", new AuthResponse(accessToken, refreshToken));
 	            return ResponseEntity.ok(response);

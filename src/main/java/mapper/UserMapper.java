@@ -10,21 +10,21 @@ import org.apache.ibatis.annotations.Select;
 import dto.UserDTO;
 
 public interface UserMapper {
-	@Insert("INSERT INTO user (username, password, email, nickname) VALUES (#{username}, #{password}, #{email}, #{nickname});")
+	@Insert("INSERT INTO user (email, password, nickname) VALUES (#{email}, #{password}, #{nickname});")
     void insertUser(UserDTO user);
 	
-	@Select("SELECT COUNT(*) FROM user WHERE username = #{username}")
-    int countById(String username);
+	@Select("SELECT COUNT(*) FROM user WHERE Email = #{email}")
+    int countByEmail(String email);
 	
-    @Select("SELECT username, password FROM user WHERE username = #{username}")
-    UserDTO findByUsername(String username);
+    @Select("SELECT email, password FROM user WHERE email = #{email}")
+    UserDTO findByUsername(String email);
     
-    @Select("SELECT password FROM user WHERE username = #{username}")
-    String getPasswordByUsername(@Param("username") String username);
+    @Select("SELECT password FROM user WHERE email = #{email}")
+    String getPasswordByEmail(@Param("email") String email);
 
-    @Select("SELECT role FROM user WHERE username = #{username}")
-    String getUserRole(@Param("username") String username);
+    @Select("SELECT role FROM user WHERE email = #{email}")
+    String getUserRole(@Param("email") String email);
     
-    @Select("SELECT username, nickname, email FROM user WHERE username = #{username}")
-    UserDTO getUserByUsername(@Param("username") String username);
+    @Select("SELECT email, nickname FROM user WHERE email = #{email}")
+    UserDTO getUserByEmail(@Param("email") String email);
 }

@@ -32,18 +32,18 @@ public class RegisterController {
             @ApiResponse(code = 200, message = "회원가입 성공", response = Response.SignUpSuccessResponse.class),
             @ApiResponse(code = 400, message = "비밀번호가 불일치.", response = Response.PasswordMismatchResponse.class),
             @ApiResponse(code = 401, message = "비밀번호 길이 제한", response = Response.PasswordLengthErrorResponse.class),
-            @ApiResponse(code = 402, message = "중복 ID", response = Response.DuplicateIdResponse.class)
+            @ApiResponse(code = 402, message = "중복 Email", response = Response.DuplicateIdResponse.class)
     })
     public ResponseEntity<Map<String, Object>> registerUser(@RequestBody UserDTO userDTO) {
     	   try {
     		   Map<String, Object> response = new HashMap<>();
                // Check if the ID is already taken
-               if (userService.isIdDuplicated(userDTO.getUsername())) {
-                   response.put("statusCode", 400);
-                   response.put("success", false);
-                   response.put("message", "이미 존재하는 ID입니다.");
-                   return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-               }
+				
+				  if (userService.isIdDuplicated(userDTO.getEmail())) {
+				  response.put("statusCode", 400); response.put("success", false);
+				  response.put("message", "이미 존재하는 Email입니다."); return
+				  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response); }
+				 
                
                if (userDTO.getPassword().length() < 8) {
                    response.put("statusCode", 400);

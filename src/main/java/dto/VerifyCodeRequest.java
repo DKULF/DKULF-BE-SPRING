@@ -3,9 +3,7 @@ package dto;
 import lombok.Data;
 
 @Data
-public class LoginDTO {
+public class VerifyCodeRequest {
     private String email;
-    private String password;
-    
-
+    private int code;
 }

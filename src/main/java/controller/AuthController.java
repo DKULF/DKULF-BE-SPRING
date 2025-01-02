@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import dto.EmailSendRequest;
+import dto.VerifyCodeRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -42,7 +44,8 @@ public class AuthController {
             @ApiResponse(code = 400, message = "대학 도메인과 불일치", response = Response.EmailErrorResponse1.class),
             @ApiResponse(code = 401, message = "이미 인증된 이메일", response = Response.EmailErrorResponse2.class)
     })
-    public ResponseEntity<Map<String, Object>> sendVerificationCode(@RequestBody String email) {
+    public ResponseEntity<Map<String, Object>> sendVerificationCode(@RequestBody EmailSendRequest request) {
+    	String email = request.getEmail();
     	System.out.println(email);
     	 Map<String, Object> result = verificationService.requestVerificationCode(email,"단국대학교", true);
     	 if((boolean)result.get("success")) {
@@ -59,39 +62,28 @@ public class AuthController {
         @ApiResponse(code = 400, message = "인증 코드 미일치", response = EmailErrorResponseInvalidCode.class),
         @ApiResponse(code = 401, message = "인증 요청 이력 없음", response = EmailErrorResponseNoRequest.class)
     })
-    @ApiImplicitParams({
-        @ApiImplicitParam(
-            name = "email",
-            value = "사용자의 이메일 주소",
-            required = true,
-            dataType = "string",
-            paramType = "query",
-            example = "\"example@dankook.ac.kr\""
-        ),
-        @ApiImplicitParam(
-            name = "code",
-            value = "인증 코드",
-            required = true,
-            dataType = "int",
-            paramType = "query",
-            example = "123456"
-        )
-    })
-    @GetMapping("/verify")
-    public ResponseEntity<Map<String, Object>> verifyCode(@RequestParam String email, @RequestParam int code) {
+    @PostMapping("/verify")
+    public ResponseEntity<Map<String, Object>> verifyCode(@RequestBody VerifyCodeRequest request) {
+    	String email = request.getEmail();
+        int code = request.getCode();
     	 Map<String, Object> result = verificationService.verifyCode(email, "단국대학교", code);
     	 if(result == null) {
     		 result = new HashMap<String, Object>();
+    		 result.put("success", false);
+    		 result.put("statusCode", 400);
     		 result.put("message", "system error");
     		 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
     	 }
     	 if((boolean)result.get("success")) {
     		 result = new HashMap<String, Object>();
+    		 result.put("statusCode", 200);
     		 result.put("success", true);
+    		 result.put("message", "인증이 완료되었습니다.");
     		 return ResponseEntity.ok(result);
     	 }
     	 else {
     		 result.remove("code");
+    		 result.put("statusCode", 400);
     		 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
     	 }
     }

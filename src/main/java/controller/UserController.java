@@ -63,7 +63,7 @@ public class UserController {
         String username = JwtUtil.extractUsername(authHeader);
 
         // Fetch user information
-        UserDTO user = userService.getUserByUsername(username);
+        UserDTO user = userService.getUserByEmail(username);
         if (user == null) {
             response.put("success", false);
             response.put("statusCode", 404);

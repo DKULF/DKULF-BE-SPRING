@@ -205,7 +205,7 @@ public class Response {
 	}
 
 	@Data
-	@ApiModel(description = "중복 ID 에러 응답")
+	@ApiModel(description = "중복 Enail 에러 응답")
 	public class DuplicateIdResponse {
 	    @ApiModelProperty(value = "HTTP 상태 코드", example = "400")
 	    private int statusCode;
@@ -213,7 +213,7 @@ public class Response {
 	    @ApiModelProperty(value = "성공 여부", example = "false")
 	    private boolean success;
 
-	    @ApiModelProperty(value = "에러 메시지", example = "이미 존재하는 ID입니다.")
+	    @ApiModelProperty(value = "에러 메시지", example = "이미 존재하는 Email입니다.")
 	    private String message;
 	}
 	

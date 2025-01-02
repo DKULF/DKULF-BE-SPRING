@@ -40,8 +40,8 @@ public class SwaggerConfig {
             "`eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1wbGUiLCJpYXQiOjE3MzU3Mjc3MzEsImV4cCI6MTczNzExMDEzMX0.awfyhxRQajfGcKWRDw61jiQEb1Qm9RJBwSvrQ3ZoARk`\n\n" +
             "### 참고:\n" +
             "처음 실행 시 등록되어 있는 계정은 다음과 같습니다.\n" +
-            "- 관리자 계정: `admin / admin`\n" +
-            "- 샘플 계정: `sample / sample`\n";
+            "- 관리자 계정: `admin@dankook.ac.kr / admin`\n" +
+            "- 샘플 계정: `sample@dankook.ac.kr / sample`\n";
 
     		
     @Bean

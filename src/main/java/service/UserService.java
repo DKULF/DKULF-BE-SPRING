@@ -24,21 +24,21 @@ public class UserService {
         userMapper.insertUser(userDTO);
     }
     
-    public boolean validateUser(String username, String rawPassword) {
-        String encodedPassword = userMapper.getPasswordByUsername(username);
+    public boolean validateUser(String email, String rawPassword) {
+        String encodedPassword = userMapper.getPasswordByEmail(email);
         return encodedPassword != null && passwordEncoder.matches(rawPassword, encodedPassword);
     }
     
-    public String getUserRole(String username) {
-        return userMapper.getUserRole(username);
+    public String getUserRole(String email) {
+        return userMapper.getUserRole(email);
     }
     
-    public boolean isIdDuplicated(String id) {
+    public boolean isIdDuplicated(String email) {
         // Use the UserMapper to check for ID duplication
-        return userMapper.countById(id) > 0;
+        return userMapper.countByEmail(email) > 0;
     }
     
-    public UserDTO getUserByUsername(String username) {
-        return userMapper.getUserByUsername(username);
+    public UserDTO getUserByEmail(String email) {
+        return userMapper.getUserByEmail(email);
     }
 }
