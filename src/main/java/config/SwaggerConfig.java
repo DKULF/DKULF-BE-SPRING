@@ -3,6 +3,7 @@ package config;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -52,6 +53,7 @@ public class SwaggerConfig {
                 .select()			
                 .apis(RequestHandlerSelectors.basePackage("controller")) 
                 .build()
+                .produces(Set.of("application/json"))
                 .useDefaultResponseMessages(false)
                 .securitySchemes(Collections.singletonList(apiKey())) // SecurityScheme 등록
                 .securityContexts(Collections.singletonList(securityContext())) // 기본 응답 메시지 비활성화;

@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -70,6 +71,14 @@ public class MvcConfig implements WebMvcConfigurer {
 	              = new StandardServletMultipartResolver();
 	    return resolver;
 	  }
+	
+	 @Override
+	    public void addCorsMappings(CorsRegistry registry) {
+	        registry.addMapping("/**") // 모든 경로에 대해
+	                .allowedOrigins("http://localhost:5173") // 허용할 도메인 추가
+	                .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS") // 허용할 HTTP 메서드
+	                .allowCredentials(true); // 필요 시 쿠키 허용
+	    }
 
 	
 	
