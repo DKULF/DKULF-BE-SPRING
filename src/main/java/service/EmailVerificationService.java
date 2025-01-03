@@ -13,6 +13,7 @@ public class EmailVerificationService {
 
     public Map<String, Object> requestVerificationCode(String email, String univName, boolean univCheck) {
     	  try {
+    		  clearUser();
               // UnivCert 인증 요청
               Map<String, Object> response = UnivCert.certify(API_KEY, email, univName, univCheck);
 
