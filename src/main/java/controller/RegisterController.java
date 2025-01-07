@@ -3,6 +3,7 @@ package controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.MediaType;
 
 import dto.UserDTO;
 import io.swagger.annotations.Api;
@@ -26,7 +27,7 @@ public class RegisterController {
         this.userService = userService;
     }
 
-    @PostMapping("/join")
+    @PostMapping(value = "/join", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "회원가입 API", notes = "사용자가 회원가입을 진행합니다.")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "회원가입 성공", response = Response.SignUpSuccessResponse.class),

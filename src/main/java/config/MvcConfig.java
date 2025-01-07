@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import org.springframework.web.multipart.MultipartResolver;
@@ -86,6 +87,7 @@ public class MvcConfig implements WebMvcConfigurer {
 	
 	    @Override
 	    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+	    	 converters.removeIf(converter -> converter instanceof Jaxb2RootElementHttpMessageConverter);
 	        // JSON 메시지 컨버터 추가
 	        converters.add(new MappingJackson2HttpMessageConverter());
 	    }

@@ -41,4 +41,14 @@ public class UserService {
     public UserDTO getUserByEmail(String email) {
         return userMapper.getUserByEmail(email);
     }
+    
+    public boolean userExists(String email) {
+        // 이메일로 사용자 존재 여부 확인
+        return userMapper.findByEmail(email) != null;
+    }
+
+    public void deleteUser(String email) {
+        // 사용자 삭제
+        userMapper.deleteByEmail(email);
+    }
 }

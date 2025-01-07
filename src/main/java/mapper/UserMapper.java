@@ -2,6 +2,7 @@ package mapper;
 
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -27,4 +28,11 @@ public interface UserMapper {
     
     @Select("SELECT email, nickname FROM user WHERE email = #{email}")
     UserDTO getUserByEmail(@Param("email") String email);
+    
+    @Select("SELECT * FROM user WHERE email = #{email}")
+    UserDTO findByEmail(@Param("email") String email);
+
+    // 이메일로 사용자 삭제
+    @Delete("DELETE FROM user WHERE email = #{email}")
+    void deleteByEmail(@Param("email") String email);
 }

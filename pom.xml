@@ -20,7 +20,23 @@
 </repositories>
 
 	<dependencies>
-	
+		<dependency>
+		    <groupId>org.bgee.log4jdbc-log4j2</groupId>
+		    <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+		    <version>1.16</version>
+		</dependency>
+		  <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>2.13.0</version>
+      </dependency>
+		
+	<dependency>
+    <groupId>com.jayway.jsonpath</groupId>
+    <artifactId>json-path</artifactId>
+    <version>2.8.0</version> <!-- 최신 버전 -->
+    <scope>test</scope>
+</dependency>
 	<dependency>
     <groupId>org.apache.tomcat.embed</groupId>
     <artifactId>tomcat-embed-core</artifactId>
@@ -112,38 +128,43 @@
 		
 	
 
-		<!--
+		
 		<dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-api</artifactId>
-        <version>5.10.0</version>  최신 버전으로 업데이트 
+        <version>5.10.0</version> 
         <scope>test</scope>
     </dependency>
 
-     JUnit Jupiter Engine to run the tests 
+<dependency>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-core</artifactId>
+    <version>3.12.4</version> <!-- 적절한 버전을 선택 -->
+    <scope>test</scope>
+</dependency>
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-engine</artifactId>
-        <version>5.10.0</version>  최신 버전으로 업데이트 
+        <version>5.10.0</version> 
         <scope>test</scope>
     </dependency>
 
-     JUnit Jupiter Params for parameterized tests 
+
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-params</artifactId>
-        <version>5.10.0</version>  최신 버전으로 업데이트 
+        <version>5.10.0</version>  
         <scope>test</scope>
     </dependency>
 
-     JUnit Platform Suite for @Suite support 
+
     <dependency>
         <groupId>org.junit.platform</groupId>
         <artifactId>junit-platform-suite</artifactId>
-        <version>1.10.0</version>  최신 버전으로 업데이트 
+        <version>1.10.0</version>  
         <scope>test</scope>
     </dependency>
--->
+
 		
 
 		

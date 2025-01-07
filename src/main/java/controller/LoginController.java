@@ -2,6 +2,7 @@ package controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +34,7 @@ public class LoginController {
 	  	@Autowired
 	  	private UserService userService;
 
-	    @PostMapping("/login")
+	  	@PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
 	    @ApiOperation(value = "로그인 API", notes = "사용자의 아이디와 비밀번호로 로그인을 처리합니다.")
 	    @ApiResponses(value = {
 	            @ApiResponse(code = 200, message = "로그인 성공", response = Response.LoginSuccessResponse.class),
@@ -70,7 +71,7 @@ public class LoginController {
 
 	    }
 
-	    @PostMapping("/refresh")
+	  	@PostMapping(value = "/refresh", produces = MediaType.APPLICATION_JSON_VALUE)
 	    @ApiOperation(value = "토큰 갱신 API", notes = "Refresh Token을 사용하여 새로운 Access Token을 발급받습니다.")
 	    @ApiResponses(value = {
 	            @ApiResponse(code = 200, message = "Access Token 발급 성공", response = Response.TokenSuccessResponse.class),
@@ -105,7 +106,31 @@ public class LoginController {
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
 	    }
 	
-	    
+	    @DeleteMapping("/delete")
+	    @ApiOperation(value = "회원 탈퇴 API", notes = "이메일을 사용하여 사용자를 삭제합니다.")
+	    @ApiResponses(value = {
+	            @ApiResponse(code = 200, message = "회원 탈퇴 성공"),
+	            @ApiResponse(code = 404, message = "회원 정보 없음")
+	    })
+	    public ResponseEntity<?> deleteUser(@RequestParam @ApiParam(value = "사용자 이메일", required = true) String email) {
+	        Map<String, Object> response = new HashMap<>();
+
+	        // 유저 존재 여부 확인
+	        if (!userService.userExists(email)) {
+	            response.put("statusCode", 404);
+	            response.put("success", false);
+	            response.put("message", "회원 정보를 찾을 수 없습니다.");
+	            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+	        }
+
+	        // 유저 삭제
+	        userService.deleteUser(email);
+	        response.put("statusCode", 200);
+	        response.put("success", true);
+	        response.put("message", "회원 탈퇴가 완료되었습니다.");
+	        return ResponseEntity.ok(response);
+	    }
+
 
 	    static class AuthResponse {
 	        private String accessToken;

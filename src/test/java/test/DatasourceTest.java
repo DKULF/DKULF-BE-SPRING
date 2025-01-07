@@ -24,7 +24,6 @@
 //@ExtendWith(SpringExtension.class)
 ////@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 //@ContextConfiguration(classes= {MemberConfig.class})
-//@Log4j2
 //public class DatasourceTest {
 //
 //  @Setter(onMethod_ = { @Autowired })
