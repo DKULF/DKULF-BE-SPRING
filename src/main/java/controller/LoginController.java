@@ -39,7 +39,8 @@ public class LoginController {
 @ApiResponses(value = {
         @ApiResponse(code = 200, message = "로그인 성공", response = Response.LoginSuccessResponse.class),
         @ApiResponse(code = 400, message = "잘못된 아이디, 비밀번호", response = Response.LoginErrorResponse1.class),
-        @ApiResponse(code = 401, message = "아이디, 비밀번호 누락", response = Response.LoginErrorResponse2.class)
+        @ApiResponse(code = 401, message = "아이디, 비밀번호 누락", response = Response.LoginErrorResponse2.class),
+        @ApiResponse(code = 403, message = "권한 없음", response = Response.LoginErrorResponse3.class)
 })
 public ResponseEntity<?> userLogin(@RequestBody LoginDTO loginDTO) {
     return handleLogin(loginDTO, false);
@@ -82,6 +83,13 @@ private ResponseEntity<?> handleLogin(LoginDTO loginDTO, boolean isAdmin) {
     // 관리자 로그인 시 권한 확인
     String role = userService.getUserRole(username);
     if (isAdmin && !"ROLE_ADMIN".equals(role)) {
+        response.put("statusCode", 403);
+        response.put("success", false);
+        response.put("message", "관리자 권한이 없습니다.");
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
+    }
+    
+    if (!isAdmin && "ROLE_ADMIN".equals(role)) {
         response.put("statusCode", 403);
         response.put("success", false);
         response.put("message", "관리자 권한이 없습니다.");

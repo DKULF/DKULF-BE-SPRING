@@ -434,3 +434,14 @@
 0:0:0:0:0:0:0:1 - - [08/Jan/2025:02:55:32 +0900] "GET /webjars/springfox-swagger-ui/fonts/source-code-pro-v7-latin-300.woff2 HTTP/1.1" 200 13292
 0:0:0:0:0:0:0:1 - - [08/Jan/2025:02:55:32 +0900] "GET /webjars/springfox-swagger-ui/fonts/source-code-pro-v7-latin-600.woff2 HTTP/1.1" 200 12956
 0:0:0:0:0:0:0:1 - - [08/Jan/2025:02:55:38 +0900] "GET /webjars/springfox-swagger-ui/fonts/titillium-web-v6-latin-regular.woff2 HTTP/1.1" 200 12264
+0:0:0:0:0:0:0:1 - - [08/Jan/2025:03:22:41 +0900] "GET /test/swagger-resources/configuration/ui HTTP/1.1" 404 858
+0:0:0:0:0:0:0:1 - - [08/Jan/2025:03:22:44 +0900] "GET /swagger-resources/configuration/ui HTTP/1.1" 200 462
+0:0:0:0:0:0:0:1 - - [08/Jan/2025:03:22:44 +0900] "GET /swagger-resources/configuration/security HTTP/1.1" 200 12
+0:0:0:0:0:0:0:1 - - [08/Jan/2025:03:22:45 +0900] "GET /swagger-resources HTTP/1.1" 200 101
+0:0:0:0:0:0:0:1 - - [08/Jan/2025:03:22:45 +0900] "GET / HTTP/1.1" 200 125
+0:0:0:0:0:0:0:1 - - [08/Jan/2025:03:22:45 +0900] "GET /test/null/swagger-resources/configuration/ui HTTP/1.1" 404 867
+0:0:0:0:0:0:0:1 - - [08/Jan/2025:03:22:45 +0900] "GET /csrf HTTP/1.1" 404 811
+0:0:0:0:0:0:0:1 - - [08/Jan/2025:03:22:45 +0900] "GET /v2/api-docs HTTP/1.1" 200 18894
+0:0:0:0:0:0:0:1 - - [08/Jan/2025:03:23:13 +0900] "POST /auth/login HTTP/1.1" 403 91
+0:0:0:0:0:0:0:1 - - [08/Jan/2025:03:23:13 +0900] "GET /webjars/springfox-swagger-ui/fonts/titillium-web-v6-latin-600.woff2 HTTP/1.1" 200 12148
+0:0:0:0:0:0:0:1 - - [08/Jan/2025:03:23:25 +0900] "POST /auth/login HTTP/1.1" 200 404
