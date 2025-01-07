@@ -271,4 +271,45 @@ public class Response {
 	    @ApiModelProperty(value = "에러 메시지", example = "사용자 정보가 존재하지 않습니다.")
 	    private String message;
 	}
+	@Data
+	@ApiModel(description = "관리자 권한 없음 오류 응답")
+	public class LoginErrorResponse3 {
+
+	    @ApiModelProperty(value = "상태 코드", example = "403")
+	    private int statusCode;
+
+	    @ApiModelProperty(value = "성공 여부", example = "false")
+	    private boolean success;
+
+	    @ApiModelProperty(value = "에러 메시지", example = "관리자 권한이 없습니다.")
+	    private String message;
+	}
+	@Data
+	@ApiModel(description = "회원 탈퇴 성공 응답")
+	public class DeleteSuccessResponse {
+
+	    @ApiModelProperty(value = "상태 코드", example = "200")
+	    private int statusCode;
+
+	    @ApiModelProperty(value = "성공 여부", example = "true")
+	    private boolean success;
+
+	    @ApiModelProperty(value = "응답 메시지", example = "회원 탈퇴가 완료되었습니다.")
+	    private String message;
+	}
+	
+	@Data
+	@ApiModel(description = "회원 정보 없음 오류 응답")
+	public class DeleteErrorResponse {
+
+	    @ApiModelProperty(value = "상태 코드", example = "404")
+	    private int statusCode;
+
+	    @ApiModelProperty(value = "성공 여부", example = "false")
+	    private boolean success;
+
+	    @ApiModelProperty(value = "에러 메시지", example = "회원 정보를 찾을 수 없습니다.")
+	    private String message;
+
+	}
 }
