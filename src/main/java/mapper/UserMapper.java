@@ -32,7 +32,6 @@ public interface UserMapper {
     @Select("SELECT * FROM user WHERE email = #{email}")
     UserDTO findByEmail(@Param("email") String email);
 
-    // 이메일로 사용자 삭제
     @Delete("DELETE FROM user WHERE email = #{email}")
     void deleteByEmail(@Param("email") String email);
 }

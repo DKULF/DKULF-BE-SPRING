@@ -1,5 +1,6 @@
 package controller;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +28,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/info")
+    @GetMapping(value = "/info", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "사용자 정보 조회 API", notes = "사용자의 정보를 조회합니다.")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "사용자 정보 조회 성공", response = Response.UserInfoSuccessResponse.class),
