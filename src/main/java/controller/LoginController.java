@@ -43,20 +43,20 @@ public class LoginController {
         @ApiResponse(code = 403, message = "권한 없음", response = Response.LoginErrorResponse3.class)
 })
 public ResponseEntity<?> userLogin(@RequestBody LoginDTO loginDTO) {
-    return handleLogin(loginDTO, false);
-}
-
-@PostMapping(value = "/admin/login", produces = MediaType.APPLICATION_JSON_VALUE)
-@ApiOperation(value = "관리자 로그인 API", notes = "관리자의 아이디와 비밀번호로 로그인을 처리합니다.")
-@ApiResponses(value = {
-        @ApiResponse(code = 200, message = "로그인 성공", response = Response.LoginSuccessResponse.class),
-        @ApiResponse(code = 400, message = "잘못된 아이디, 비밀번호", response = Response.LoginErrorResponse1.class),
-        @ApiResponse(code = 401, message = "아이디, 비밀번호 누락", response = Response.LoginErrorResponse2.class),
-        @ApiResponse(code = 403, message = "권한 없음", response = Response.LoginErrorResponse3.class)
-})
-public ResponseEntity<?> adminLogin(@RequestBody LoginDTO loginDTO) {
     return handleLogin(loginDTO, true);
 }
+
+//@PostMapping(value = "/admin/login", produces = MediaType.APPLICATION_JSON_VALUE)
+//@ApiOperation(value = "관리자 로그인 API", notes = "관리자의 아이디와 비밀번호로 로그인을 처리합니다.")
+//@ApiResponses(value = {
+//        @ApiResponse(code = 200, message = "로그인 성공", response = Response.LoginSuccessResponse.class),
+//        @ApiResponse(code = 400, message = "잘못된 아이디, 비밀번호", response = Response.LoginErrorResponse1.class),
+//        @ApiResponse(code = 401, message = "아이디, 비밀번호 누락", response = Response.LoginErrorResponse2.class),
+//        @ApiResponse(code = 403, message = "권한 없음", response = Response.LoginErrorResponse3.class)
+//})
+//public ResponseEntity<?> adminLogin(@RequestBody LoginDTO loginDTO) {
+//    return handleLogin(loginDTO, true);
+//}
 
 private ResponseEntity<?> handleLogin(LoginDTO loginDTO, boolean isAdmin) {
     Map<String, Object> response = new HashMap<>();
@@ -104,30 +104,30 @@ private ResponseEntity<?> handleLogin(LoginDTO loginDTO, boolean isAdmin) {
     response.put("token", new AuthResponse(accessToken, refreshToken));
     return ResponseEntity.ok(response);
 }	
-	    @DeleteMapping("/delete")
-	    @ApiOperation(value = "회원 탈퇴 API", notes = "이메일을 사용하여 사용자를 삭제합니다.")
-	    @ApiResponses(value = {
-	            @ApiResponse(code = 200, message = "회원 탈퇴 성공", response = Response.DeleteSuccessResponse.class),
-	            @ApiResponse(code = 404, message = "회원 정보 없음", response = Response.DeleteErrorResponse.class)
-	    })
-	    public ResponseEntity<?> deleteUser(@RequestParam @ApiParam(value = "사용자 이메일", required = true) String email) {
-	        Map<String, Object> response = new HashMap<>();
-
-	        // 유저 존재 여부 확인
-	        if (!userService.userExists(email)) {
-	            response.put("statusCode", 404);
-	            response.put("success", false);
-	            response.put("message", "회원 정보를 찾을 수 없습니다.");
-	            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
-	        }
-
-	        // 유저 삭제
-	        userService.deleteUser(email);
-	        response.put("statusCode", 200);
-	        response.put("success", true);
-	        response.put("message", "회원 탈퇴가 완료되었습니다.");
-	        return ResponseEntity.ok(response);
-	    }
+//	    @DeleteMapping("/delete")
+//	    @ApiOperation(value = "회원 탈퇴 API", notes = "이메일을 사용하여 사용자를 삭제합니다.")
+//	    @ApiResponses(value = {
+//	            @ApiResponse(code = 200, message = "회원 탈퇴 성공", response = Response.DeleteSuccessResponse.class),
+//	            @ApiResponse(code = 404, message = "회원 정보 없음", response = Response.DeleteErrorResponse.class)
+//	    })
+//	    public ResponseEntity<?> deleteUser(@RequestParam @ApiParam(value = "사용자 이메일", required = true) String email) {
+//	        Map<String, Object> response = new HashMap<>();
+//
+//	        // 유저 존재 여부 확인
+//	        if (!userService.userExists(email)) {
+//	            response.put("statusCode", 404);
+//	            response.put("success", false);
+//	            response.put("message", "회원 정보를 찾을 수 없습니다.");
+//	            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+//	        }
+//
+//	        // 유저 삭제
+//	        userService.deleteUser(email);
+//	        response.put("statusCode", 200);
+//	        response.put("success", true);
+//	        response.put("message", "회원 탈퇴가 완료되었습니다.");
+//	        return ResponseEntity.ok(response);
+//	    }
 	    
 	 	@PostMapping(value = "/refresh", produces = MediaType.APPLICATION_JSON_VALUE)
 	    @ApiOperation(value = "토큰 갱신 API", notes = "Refresh Token을 사용하여 새로운 Access Token을 발급받습니다.")
